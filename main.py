@@ -74,10 +74,10 @@ async def initialize_user(user_id):
       raise HTTPException(status_code=500, detail=str(e)) 
    
 
-@app.post("/api/users/update/{user_id}")
-async def update_user(user_id, user_data: UserQuizInit):
+@app.post("/api/users/update/{user_data}")
+async def update_user(user_data: UserQuizInit):
    data_dict = user_data.dict()
-   
+   user_id = data_dict.get("user_id")
    try:
       user = click_tracker.update_user(user_id, data_dict)
       return {"user_id": user_id, "profile": user}
