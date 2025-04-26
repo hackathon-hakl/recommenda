@@ -21,7 +21,7 @@ class ClickTracker:
       with open(self.user_db_path, 'w', encoding='utf-8') as f:
          json.dump(self.user_db, f, indent=4, ensure_ascii=False)
    
-   def initialize_user(self, user_id, user_data):
+   def initialize_user(self, user_id, user_data =  None):
       """Initialize a new user with profile data"""
       users = self.user_db["users"]
       if user_id not in users:

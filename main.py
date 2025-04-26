@@ -60,15 +60,10 @@ def get_user_or_error(user_id: str):
 
 @app.post("/api/users/initialize/{user_id}")
 async def initialize_user(user_id):
-   user_data = UserQuizInit()
    if user_id is None:
-      user_id = user_data.user_id if user_data.user_id else f"user_{int(datetime.now().timestamp())}"
-   print(f"Initializing user ID: {user_id}")
-   data_dict = user_data.dict(exclude_unset=True)
-   if 'user_id' in data_dict:
-      data_dict.pop('user_id')
+      user_id = f"user_{int(datetime.now().timestamp())}"
    try:
-      user = click_tracker.initialize_user(user_id, data_dict)
+      user = click_tracker.initialize_user(user_id)
       return {"user_id": user_id, "profile": user}
    except Exception as e:
       raise HTTPException(status_code=500, detail=str(e)) 
