@@ -6,6 +6,8 @@ from fastapi.responses import JSONResponse
 from typing import List, Dict, Optional, Any
 import json
 from pydantic import BaseModel
+import uvicorn
+
 
 database_path = "user_clicks.json"
 sports_ids = get_all_sport_ids(api, base_id)
@@ -223,5 +225,4 @@ async def health_check():
    return {"status": "healthy", "sports_count": len(sports_ids), "locations_count": len(locations_ids)}
 
 if __name__ == "__main__":
-   import uvicorn
    uvicorn.run(app, host="0.0.0.0", port=8888)
