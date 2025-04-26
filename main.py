@@ -5,7 +5,7 @@ from fastapi import FastAPI, HTTPException
 from typing import List, Dict, Optional, Any
 from pydantic import BaseModel
 import uvicorn
-
+from fastapi.middleware.cors import CORSMiddleware
 
 database_path = "user_clicks.json"
 sports_ids = get_all_sport_ids(api, base_id)
@@ -16,12 +16,21 @@ click_tracker = ClickTracker(database_path)
 
 app = FastAPI(title="AlterSport API")
 
-class UserInit(BaseModel):
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+class UserQuizInit(BaseModel):
    user_id: Optional[str] = None
    user_name: Optional[str] = None
    age: Optional[str] = None 
    city: Optional[str] = None
    district: Optional[str] = None
+   sport_type_preference: Optional[str] = None
    sport_interests: Optional[List[str]] = None
    event_type_priority: Optional[List[str]] = None
    personal_usage: Optional[str] = None
@@ -49,16 +58,28 @@ def get_user_or_error(user_id: str):
       raise HTTPException(status_code=404, detail=f"User with ID {user_id} not found")
    return user
 
-@app.post("/api/users/initialize")
-async def initialize_user(user_data: UserInit):
-   user_id = user_data.user_id if user_data.user_id else f"user_{int(datetime.now().timestamp())}"
+@app.post("/api/users/initialize/{user_id}")
+async def initialize_user(user_id):
+   user_data = UserQuizInit()
+   if user_id is None:
+      user_id = user_data.user_id if user_data.user_id else f"user_{int(datetime.now().timestamp())}"
    print(f"Initializing user ID: {user_id}")
-   data_dict = user_data.dict()
+   data_dict = user_data.dict(exclude_unset=True)
    if 'user_id' in data_dict:
       data_dict.pop('user_id')
-   
    try:
       user = click_tracker.initialize_user(user_id, data_dict)
+      return {"user_id": user_id, "profile": user}
+   except Exception as e:
+      raise HTTPException(status_code=500, detail=str(e)) 
+   
+
+@app.post("/api/users/update/{user_id}")
+async def update_user(user_id, user_data: UserQuizInit):
+   data_dict = user_data.dict()
+   
+   try:
+      user = click_tracker.update_user(user_id, data_dict)
       return {"user_id": user_id, "profile": user}
    except Exception as e:
       raise HTTPException(status_code=500, detail=str(e)) 
@@ -221,6 +242,15 @@ async def get_events(days_ahead: int = 7):
       end_date = today + timedelta(days=days_ahead)
       events = get_events_by_date_range(api, base_id, today.isoformat(), end_date.isoformat())
       return {"events": events}
+   except Exception as e:
+      raise HTTPException(status_code=500, detail=str(e))
+   
+@app.get("/api/get_user_clicks")
+async def get_user_clicks(user_id: str):
+   """Get all clicks for a user"""
+   try:
+      database = click_tracker.get_db()
+      return {"database" : database}
    except Exception as e:
       raise HTTPException(status_code=500, detail=str(e))
 

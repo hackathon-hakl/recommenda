@@ -62,6 +62,27 @@ class ClickTracker:
       
       return users[user_id]
    
+   def update_user(self, user_id, user_data):
+      """Update user profile data"""
+      users = self.user_db["users"]
+      if user_id in users:
+         if "user_name" in user_data:
+            users[user_id]["user_name"] = user_data["user_name"]
+         if "age" in user_data:
+            users[user_id]["age"] = int(user_data["age"])
+         if "city" in user_data:
+            users[user_id]["city"] = user_data["city"].lower()
+         if "district" in user_data:
+            users[user_id]["district"] = user_data["district"].lower()
+         if "sport_interests" in user_data:
+            users[user_id]["sport_interests"] = user_data["sport_interests"]
+         if "event_type_priority" in user_data:
+            users[user_id]["event_type_priority"] = user_data["event_type_priority"]
+         if 'sport_type_preference' in user_data:
+            users[user_id]["sport_type_preference"] = user_data["sport_type_preference"]
+         self._save_db()
+      return users[user_id]
+   
    def get_user(self, user_id):
       users = self.user_db["users"]
       if user_id not in users:
@@ -340,3 +361,6 @@ class ClickTracker:
          "recent_events": user.get("events_liked", [])[-5:],
          "sport_interests": user.get("sport_interests", [])  
       }
+
+   def get_db(self):
+      return self.user_db
