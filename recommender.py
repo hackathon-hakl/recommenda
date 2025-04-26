@@ -480,6 +480,8 @@ class Recommender:
             for match in api_matches:
                fields = match.get('fields', {})
                
+               print(f"fields : {fields}")
+               
                home_team = fields.get('Home Team', [''])[0] if fields.get('Home Team') else None
                away_team = fields.get('Away Team', [''])[0] if fields.get('Away Team') else None
                
@@ -500,7 +502,8 @@ class Recommender:
                   "home_team_logo" : home_team_data['fields']['Team Logo'][0]['url'],
                   "away_team_id": away_team,
                   "away_team_logo" : home_team_data['fields']['Team Logo'][0]['url'],
-                  "from_api": True 
+                  "from_api": True ,
+                  "kategorija" : fields.get('Kategorija', ['']) if fields.get('Kategorija') else None
                }
                all_events.append(event)
       except:

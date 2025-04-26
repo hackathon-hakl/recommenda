@@ -1,0 +1,40 @@
+na pocetku nula
+
+Opcionalno:
+   godine
+   mjesto stovanja
+   sto trenira/kliknuti interese od sportova
+   koristi li se aplikacija za sebe ili za svoje dijete
+   
+Kasnije:
+   odabir prioriteta: 
+      - sto zeli saznati u aplikaciji
+              - utakmice
+              - treninzi
+              - igraci
+              - klubovi
+              - turniri
+              - dogadanja
+
+Patrik mi salje:  
+   - pocetni profil
+   - kliknuo je na ovu:
+         a ) utakmicu
+         b ) trening
+         c ) igraca
+         d ) klub
+         e ) turnir
+         f ) dogadanje
+   - odabire prioritete
+   - odabire sportove
+   
+   
+On refresh ja njemu saljem:
+   - preporuke:
+      utakmica 
+      dogadanja
+      
+
+- Individualno ili u timu
+- Trčanje, izgradnja izvdrzvljivosti, sanga, brzina, strateško planiranja 
+- 
