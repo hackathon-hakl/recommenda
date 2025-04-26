@@ -168,6 +168,7 @@ class Recommender:
       return None
    
    def get_homepage_recommendations(self, user_id, limit=10):
+      self._build_user_similarity_matrix()
       print(user_id)
       user = self.get_user_profile(user_id)
       
@@ -512,6 +513,7 @@ class Recommender:
       return all_events[:limit]
 
    def get_real_time_match_recommendations(self, user_id, limit=5):
+      self._build_user_similarity_matrix()
       user = self.get_user_profile(user_id)
       if not user:
          return []

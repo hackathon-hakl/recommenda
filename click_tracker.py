@@ -58,7 +58,7 @@ class ClickTracker:
             for sport_id in users[user_id]["sport_interests"]:
                users[user_id]["sports_liked_count"][sport_id] = 1
                
-         self._save_db()
+      self._save_db()
       
       return users[user_id]
    
@@ -80,7 +80,7 @@ class ClickTracker:
             users[user_id]["event_type_priority"] = user_data["event_type_priority"]
          if 'sport_type_preference' in user_data:
             users[user_id]["sport_type_preference"] = user_data["sport_type_preference"]
-         self._save_db()
+      self._save_db()
       return users[user_id]
    
    def get_user(self, user_id):
