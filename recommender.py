@@ -54,8 +54,8 @@ class Recommender:
          age_feature = user.get('age', 'JUNIORS')
          age_feature = AgeGroup[age_feature.upper()].value - 1 if age_feature in AgeGroup.__members__ else 0
          
-         city = user.get('city', '').lower()
-         district = user.get('district', '').lower()
+         city = user.get('city', '').lower() if user.get('city') else ''
+         district = user.get('district', '').lower() if user.get('district') else ''
          location_feature = self._encode_location(city, district)
          
          

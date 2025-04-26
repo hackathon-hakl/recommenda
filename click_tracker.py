@@ -208,24 +208,28 @@ class ClickTracker:
 
    def track_sport_click(self, user_id, sport_id):
       user = self.get_user(user_id)
-      
+      print(f"Tracking sport click for user {user_id} and sport {sport_id}")
       try:
          if sport_id:
-               if sport_id not in user["sports_clicked"]:
-                  user["sports_clicked"][sport_id] = 0
-               user["sports_clicked"][sport_id] += 1
-               
-               if sport_id not in user["sports_liked_count"]:
-                  user["sports_liked_count"][sport_id] = 0
-               user["sports_liked_count"][sport_id] += 1
-               
-               if sport_id not in user["sport_interests"]:
-                  user["sport_interests"].append(sport_id)
+            print(f"Sport ID: {sport_id}")
+            if sport_id not in user["sports_clicked"]:
+               user["sports_clicked"][sport_id] = 0
+            user["sports_clicked"][sport_id] += 1
+            
+            if sport_id not in user["sports_liked_count"]:
+               user["sports_liked_count"][sport_id] = 0
+            user["sports_liked_count"][sport_id] += 1
+            
+            if sport_id not in user["sport_interests"]:
+               user["sport_interests"].append(sport_id)
+         print(f"User {user_id} clicked on sport {sport_id}.")
+         print(f"User data before saving: {user}")
          
          self._save_db()
                      
          return {
-               "sport_id": sport_id 
+               "sport_id": sport_id,
+               "sport_name": sport_id
          }
          
       except Exception as e:
