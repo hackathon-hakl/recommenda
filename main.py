@@ -1,10 +1,8 @@
 from API import *
 from recommender import Recommender
 from click_tracker import ClickTracker
-from fastapi import FastAPI, Request, Response, HTTPException, Depends
-from fastapi.responses import JSONResponse
+from fastapi import FastAPI, HTTPException
 from typing import List, Dict, Optional, Any
-import json
 from pydantic import BaseModel
 import uvicorn
 
