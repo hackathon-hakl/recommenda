@@ -3556,6 +3556,88 @@
                 "recULxSjZAUtZi3ZF": 1,
                 "recEG3EDldwTufBWt": 1
             }
+        },
+        "user_1745704888": {
+            "user_id": "user_1745704888",
+            "age": "28",
+            "city": "rijeka",
+            "district": "jarun",
+            "user_name": "Nina Babić",
+            "sport_interests": [
+                "recGfphnFce1DEBhE",
+                "rechBDkyGTVt63HkC"
+            ],
+            "sports_liked_count": {
+                "recGfphnFce1DEBhE": 7,
+                "rechBDkyGTVt63HkC": 2
+            },
+            "teams_liked": [
+                "recbBO2dEP83DqOuF",
+                "recRB6Md7YUujJbLt",
+                "reccOQw7IkaJ2IBaM",
+                "recsoXWotk9tmM8Z8",
+                "recMJaJouLLc149p6"
+            ],
+            "team_liked_sport": {
+                "recGfphnFce1DEBhE": 5,
+                "rechBDkyGTVt63HkC": 4
+            },
+            "team_liked_location": {},
+            "player_liked_sports_count": {},
+            "events_liked": [
+                {
+                    "event_id": "reciuH6PwcNQMyAtf",
+                    "event_type": "MATCH",
+                    "event_time": "1",
+                    "event_date": "2",
+                    "sport_id": "rechBDkyGTVt63HkC",
+                    "sport_name": "Nogomet",
+                    "home_team_id": "recRB6Md7YUujJbLt",
+                    "away_team_id": "reccOQw7IkaJ2IBaM",
+                    "home_team": "NK Kralj Tomislav",
+                    "away_team": "NK Šparta",
+                    "category_id": "recU705R5UFCDLilc",
+                    "location_id": "recgHhOHYaDgwsPCK",
+                    "timestamp": "2025-04-27T00:01:37.229074"
+                },
+                {
+                    "event_id": "rec7enfpmECwTu4Ll",
+                    "event_type": "MATCH",
+                    "event_time": "1",
+                    "event_date": "2",
+                    "sport_id": "rechBDkyGTVt63HkC",
+                    "sport_name": "Nogomet",
+                    "home_team_id": "recsoXWotk9tmM8Z8",
+                    "away_team_id": "recMJaJouLLc149p6",
+                    "home_team": "NK Hrvatski Leskovac",
+                    "away_team": "NK Mala Mlaka",
+                    "category_id": "recU705R5UFCDLilc",
+                    "location_id": "rec35aqUFTcZUsFDp",
+                    "timestamp": "2025-04-27T00:01:38.825314"
+                }
+            ],
+            "training_liked_teams": [],
+            "training_sports_liked": {},
+            "training_location": [],
+            "event_type_priority": [
+                "tournament",
+                "match"
+            ],
+            "events_clicked": {
+                "reciuH6PwcNQMyAtf": 1,
+                "rec7enfpmECwTu4Ll": 1
+            },
+            "sports_clicked": {
+                "recGfphnFce1DEBhE": 1,
+                "rechBDkyGTVt63HkC": 2
+            },
+            "teams_clicked": {
+                "recbBO2dEP83DqOuF": 5,
+                "recRB6Md7YUujJbLt": 1,
+                "reccOQw7IkaJ2IBaM": 1,
+                "recsoXWotk9tmM8Z8": 1,
+                "recMJaJouLLc149p6": 1
+            }
         }
     }
 }

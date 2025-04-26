@@ -48,7 +48,7 @@ def get_user_or_error(user_id: str):
       raise HTTPException(status_code=404, detail=f"User with ID {user_id} not found")
    return user
 
-@app.post("/users/initialize")
+@app.post("/api/users/initialize")
 async def initialize_user(user_data: UserInit):
    user_id = f"user_{int(datetime.now().timestamp())}"
    try:
@@ -57,12 +57,12 @@ async def initialize_user(user_data: UserInit):
    except Exception as e:
       raise HTTPException(status_code=500, detail=str(e)) 
    
-@app.get("/users/{user_id}")
+@app.get("/api/users/{user_id}")
 async def get_user_profile(user_id: str):
    user = get_user_or_error(user_id)
    return {"user_id": user_id, "profile": user}
 
-@app.put("/users/{user_id}")
+@app.put("/api/users/{user_id}")
 async def update_user_profile(user_id: str, user_data: UserUpdate):
    try:
       updated_user = click_tracker.set_user_stats(user_id, user_data.dict())
@@ -70,7 +70,7 @@ async def update_user_profile(user_id: str, user_data: UserUpdate):
    except Exception as e:
       raise HTTPException(status_code=500, detail=str(e))
    
-@app.post("/track/{user_id}/event/{event_id}")
+@app.post("/api/track/{user_id}/event/{event_id}")
 async def track_event_click(user_id: str, event_id: str):
    try:
       result = click_tracker.track_event_click(user_id, event_id)
@@ -80,7 +80,7 @@ async def track_event_click(user_id: str, event_id: str):
    except Exception as e:
       raise HTTPException(status_code=500, detail=str(e))
    
-@app.post("/track/{user_id}/team/{team_id}")
+@app.post("/api/track/{user_id}/team/{team_id}")
 async def track_team_click(user_id: str, team_id: str):
    try:
       result = click_tracker.track_team_click(user_id, team_id)
@@ -90,7 +90,7 @@ async def track_team_click(user_id: str, team_id: str):
    except Exception as e:
       raise HTTPException(status_code=500, detail=str(e))
 
-@app.post("/track/{user_id}/sport/{sport_id}")
+@app.post("/api/track/{user_id}/sport/{sport_id}")
 async def track_sport_click(user_id: str, sport_id: str):
    try:
       result = click_tracker.track_sport_click(user_id, sport_id)
@@ -100,7 +100,7 @@ async def track_sport_click(user_id: str, sport_id: str):
    except Exception as e:
       raise HTTPException(status_code=500, detail=str(e))
    
-@app.post("/track/{user_id}/tournament/{tournament_id}")
+@app.post("/api/track/{user_id}/tournament/{tournament_id}")
 async def track_tournament_click(user_id: str, tournament_id: str):
    try:
       result = click_tracker.track_tournament_click(user_id, tournament_id)
@@ -110,7 +110,7 @@ async def track_tournament_click(user_id: str, tournament_id: str):
    except Exception as e:
       raise HTTPException(status_code=500, detail=str(e))
    
-@app.get("/recommend/{user_id}/homepage")
+@app.get("/api/recommend/{user_id}/homepage")
 async def get_homepage_recommendations(user_id: str, limit: int = 10):
    get_user_or_error(user_id)
    try:
@@ -119,7 +119,7 @@ async def get_homepage_recommendations(user_id: str, limit: int = 10):
    except Exception as e:
       raise HTTPException(status_code=500, detail=str(e))
    
-@app.get("/recommend/{user_id}/sport/{sport_id}")
+@app.get("/api/recommend/{user_id}/sport/{sport_id}")
 async def get_sport_recommendations(user_id: str, sport_id: str, limit: int = 5):
    get_user_or_error(user_id)
    try:
@@ -128,7 +128,7 @@ async def get_sport_recommendations(user_id: str, sport_id: str, limit: int = 5)
    except Exception as e:
       raise HTTPException(status_code=500, detail=str(e))
 
-@app.get("/recommend/{user_id}/events")
+@app.get("/api/recommend/{user_id}/events")
 async def get_event_recommendations(user_id: str, limit: int = 5):
    get_user_or_error(user_id)
    try:
@@ -137,7 +137,7 @@ async def get_event_recommendations(user_id: str, limit: int = 5):
    except Exception as e:
       raise HTTPException(status_code=500, detail=str(e))
    
-@app.get("/recommend/{user_id}/tournaments")
+@app.get("/api/recommend/{user_id}/tournaments")
 async def get_tournament_recommendations(user_id: str, limit: int = 5):
    get_user_or_error(user_id)
    try:
@@ -146,7 +146,7 @@ async def get_tournament_recommendations(user_id: str, limit: int = 5):
    except Exception as e:
       raise HTTPException(status_code=500, detail=str(e))
    
-@app.get("/recommend/{user_id}/favorites")
+@app.get("/api/recommend/{user_id}/favorites")
 async def get_user_favorites(user_id: str, limit: int = 5):
    get_user_or_error(user_id)
    try:
@@ -155,7 +155,7 @@ async def get_user_favorites(user_id: str, limit: int = 5):
    except Exception as e:
       raise HTTPException(status_code=500, detail=str(e))
 
-@app.get("/recommend/{user_id}/matches")
+@app.get("/api/recommend/{user_id}/matches")
 async def get_real_time_match_recommendations(user_id: str, limit: int = 5):
    get_user_or_error(user_id)
    try:
@@ -164,7 +164,7 @@ async def get_real_time_match_recommendations(user_id: str, limit: int = 5):
    except Exception as e:
       raise HTTPException(status_code=500, detail=str(e))
    
-@app.post("/events/date-range")
+@app.post("/api/events/date-range")
 async def get_events_by_dates(request: DateRangeRequest):
    try:
       events = get_events_by_date_range(
@@ -180,7 +180,7 @@ async def get_events_by_dates(request: DateRangeRequest):
    except Exception as e:
       raise HTTPException(status_code=500, detail=str(e))
    
-@app.get("/sports")
+@app.get("/api/sports")
 async def get_sports():
    """Get all available sports"""
    try:
@@ -189,7 +189,7 @@ async def get_sports():
    except Exception as e:
       raise HTTPException(status_code=500, detail=str(e))
    
-@app.get("/teams")
+@app.get("/api/teams")
 async def get_teams():
    """Get all available teams"""
    try:
@@ -198,7 +198,7 @@ async def get_teams():
    except Exception as e:
       raise HTTPException(status_code=500, detail=str(e))
 
-@app.get("/locations")
+@app.get("/api/locations")
 async def get_locations():
    """Get all available locations"""
    try:
@@ -207,7 +207,7 @@ async def get_locations():
    except Exception as e:
       raise HTTPException(status_code=500, detail=str(e))
    
-@app.get("/events")
+@app.get("/api/events")
 async def get_events(days_ahead: int = 7):
    """Get upcoming events for the next X days"""
    try:
@@ -218,7 +218,7 @@ async def get_events(days_ahead: int = 7):
    except Exception as e:
       raise HTTPException(status_code=500, detail=str(e))
 
-@app.get("/health")
+@app.get("/api/health")
 async def health_check():
    return {"status": "healthy", "sports_count": len(sports_ids), "locations_count": len(locations_ids)}
 

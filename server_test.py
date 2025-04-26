@@ -6,7 +6,7 @@ import time
 import sys
 
 # Configuration
-BASE_URL = "http://127.0.0.1:8888"  # Change if your server runs on a different port
+BASE_URL = "http://127.0.0.1:8888/api"  # Change if your server runs on a different port
 HEADERS = {"Content-Type": "application/json"}
 DEBUG = True  # Set to True to see detailed error information
 
