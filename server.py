@@ -224,5 +224,5 @@ async def get_events(days_ahead: int = 7):
 async def health_check():
    return {"status": "healthy", "sports_count": len(sports_ids), "locations_count": len(locations_ids)}
 
-if __name__ == "__main__":
-   uvicorn.run(app, host="0.0.0.0", port=8888)
+# if __name__ == "__main__":
+#    uvicorn.run(app, host="0.0.0.0", port=8888)
