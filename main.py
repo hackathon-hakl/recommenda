@@ -17,6 +17,7 @@ click_tracker = ClickTracker(database_path)
 app = FastAPI(title="AlterSport API")
 
 class UserInit(BaseModel):
+   user_id: Optional[str] = None
    user_name: Optional[str] = None
    age: Optional[str] = None 
    city: Optional[str] = None
@@ -50,9 +51,14 @@ def get_user_or_error(user_id: str):
 
 @app.post("/api/users/initialize")
 async def initialize_user(user_data: UserInit):
-   user_id = f"user_{int(datetime.now().timestamp())}"
+   user_id = user_data.user_id if user_data.user_id else f"user_{int(datetime.now().timestamp())}"
+   print(f"Initializing user ID: {user_id}")
+   data_dict = user_data.dict()
+   if 'user_id' in data_dict:
+      data_dict.pop('user_id')
+   
    try:
-      user = click_tracker.initialize_user(user_id, user_data.dict())
+      user = click_tracker.initialize_user(user_id, data_dict)
       return {"user_id": user_id, "profile": user}
    except Exception as e:
       raise HTTPException(status_code=500, detail=str(e)) 
@@ -222,5 +228,5 @@ async def get_events(days_ahead: int = 7):
 async def health_check():
    return {"status": "healthy", "sports_count": len(sports_ids), "locations_count": len(locations_ids)}
 
-# if __name__ == "__main__":
-#    uvicorn.run(app, host="0.0.0.0", port=8888)
+if __name__ == "__main__":
+   uvicorn.run(app, host="0.0.0.0", port=8888)

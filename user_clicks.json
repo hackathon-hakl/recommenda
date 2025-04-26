@@ -3638,6 +3638,71 @@
                 "recsoXWotk9tmM8Z8": 1,
                 "recMJaJouLLc149p6": 1
             }
+        },
+        "Luka Marić": {
+            "user_id": "Luka Marić",
+            "age": "21",
+            "city": "zadar",
+            "district": "dubrava",
+            "user_name": "Luka Marić",
+            "sport_interests": [
+                "recGfphnFce1DEBhE",
+                "recGfphnFce1DEBhE",
+                "recGfphnFce1DEBhE",
+                "recGfphnFce1DEBhE",
+                "rechBDkyGTVt63HkC"
+            ],
+            "sports_liked_count": {
+                "recGfphnFce1DEBhE": 8,
+                "rechBDkyGTVt63HkC": 1
+            },
+            "teams_liked": [
+                "recbBO2dEP83DqOuF",
+                "recIXje1p6oc90B6m",
+                "reccOQw7IkaJ2IBaM"
+            ],
+            "team_liked_sport": {
+                "recGfphnFce1DEBhE": 5,
+                "rechBDkyGTVt63HkC": 2
+            },
+            "team_liked_location": {},
+            "player_liked_sports_count": {},
+            "events_liked": [
+                {
+                    "event_id": "recjRIfBxf7YtVeLq",
+                    "event_type": "MATCH",
+                    "event_time": "1",
+                    "event_date": "2",
+                    "sport_id": "rechBDkyGTVt63HkC",
+                    "sport_name": "Nogomet",
+                    "home_team_id": "recIXje1p6oc90B6m",
+                    "away_team_id": "reccOQw7IkaJ2IBaM",
+                    "home_team": "NK Prigorje (Ž)",
+                    "away_team": "NK Šparta",
+                    "category_id": "recU705R5UFCDLilc",
+                    "location_id": "recdA6w8yfQC5v0uj",
+                    "timestamp": "2025-04-27T00:32:45.699217"
+                }
+            ],
+            "training_liked_teams": [],
+            "training_sports_liked": {},
+            "training_location": [],
+            "event_type_priority": [
+                "match",
+                "tournament"
+            ],
+            "events_clicked": {
+                "recjRIfBxf7YtVeLq": 1
+            },
+            "sports_clicked": {
+                "recGfphnFce1DEBhE": 2,
+                "rechBDkyGTVt63HkC": 1
+            },
+            "teams_clicked": {
+                "recbBO2dEP83DqOuF": 5,
+                "recIXje1p6oc90B6m": 1,
+                "reccOQw7IkaJ2IBaM": 1
+            }
         }
     }
 }

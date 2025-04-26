@@ -39,9 +39,11 @@ def create_user():
     sport_ids = ["recGfphnFce1DEBhE", "recGfphnFce1DEBhE", "recGfphnFce1DEBhE", 
                 "recGfphnFce1DEBhE", "recGfphnFce1DEBhE"]
     
+    _user_id = f"{random.choice(first_names)} {random.choice(last_names)}"
     # Create a random user
     user_data = {
-        "user_name": f"{random.choice(first_names)} {random.choice(last_names)}",
+        "user_id" : _user_id,
+        "user_name": _user_id,
         "age": str(random.randint(18, 65)),
         "city": random.choice(cities).lower(),
         "district": random.choice(districts).lower(),
