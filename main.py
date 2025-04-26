@@ -246,7 +246,7 @@ async def get_events(days_ahead: int = 7):
       raise HTTPException(status_code=500, detail=str(e))
    
 @app.get("/api/get_user_clicks")
-async def get_user_clicks(user_id: str):
+async def get_user_clicks():
    """Get all clicks for a user"""
    try:
       database = click_tracker.get_db()
