@@ -134,13 +134,17 @@ async def track_tournament_click(user_id: str, tournament_id: str):
    
 @app.get("/api/recommend/{user_id}/homepage")
 async def get_homepage_recommendations(user_id: str, limit: int = 10):
-   get_user_or_error(user_id)
    try:
+      user = click_tracker.get_user(user_id)
+      if not user:
+         user = click_tracker.initialize_user(user_id)
+      
       recommendations = recommender.get_homepage_recommendations(user_id, limit)
       return {"user_id": user_id, "recommendations": recommendations}
    except Exception as e:
+      print(f"Homepage recommendation error: {str(e)}")
       raise HTTPException(status_code=500, detail=str(e))
-   
+     
 @app.get("/api/recommend/{user_id}/sport/{sport_id}")
 async def get_sport_recommendations(user_id: str, sport_id: str, limit: int = 5):
    get_user_or_error(user_id)

@@ -33,7 +33,7 @@ class Recommender:
    def __init__(self, database_path, sports_ids, location_ids):
       with open(database_path, 'r', encoding='utf-8') as f:
          self.database = json.load(f)
-      self.users = self.database.get('users', [])
+      self.users = self.database.get('users', {})
       self.user_ids = {user : i for i, user in enumerate(self.users.keys())}
       self.sports_ids = {sport: i for i, sport in enumerate(sports_ids)}
       self.sports_num = len(self.sports_ids)
