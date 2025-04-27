@@ -4172,6 +4172,34 @@
             "sports_clicked": {},
             "teams_clicked": {},
             "sport_type_preference": null
+        },
+        "Nina Marić": {
+            "user_id": "Nina Marić",
+            "age": "ADULTS",
+            "city": "zagreb",
+            "district": "trnje",
+            "user_name": "Nina Marić_updated",
+            "sport_interests": [
+                "recGfphnFce1DEBhE",
+                "recUmMssS0H4uzmgT"
+            ],
+            "sports_liked_count": {},
+            "teams_liked": [],
+            "team_liked_sport": {},
+            "team_liked_location": {},
+            "player_liked_sports_count": {},
+            "events_liked": [],
+            "training_liked_teams": [],
+            "training_sports_liked": {},
+            "training_location": [],
+            "event_type_priority": [
+                "match",
+                "tournament"
+            ],
+            "events_clicked": {},
+            "sports_clicked": {},
+            "teams_clicked": {},
+            "sport_type_preference": null
         }
     }
 }

@@ -425,7 +425,7 @@ def test_user_update_after_wizard():
         "user_name": f"{user_id}_updated",
         "age": "ADULTS",
         "group_style": "TEAM",  # This matches the actual enum
-        "activities": ["RUNNING", "STRENGTH_AND_ENDURANCE"],
+        "activities": ["BALL", "STRENGTH_AND_ENDURANCE"],
         "city": "zagreb",
         "district": "trnje",
         "sport_interests": ["recGfphnFce1DEBhE"],  # Tennis sport ID

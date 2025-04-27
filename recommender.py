@@ -685,8 +685,8 @@ class RuleBasedRecommender:
          elif activity == ActivitiesEnjoyed.DANCE_AND_RHYTHM:
                pass
          elif activity == ActivitiesEnjoyed.BALL:
-            sport_scores['Hokej na travi'] += 2
-            sport_scores['Ragbi'] += 2
+            sport_scores['Hokej na travi'] += 1
+            sport_scores['Ragbi'] += 1
             sport_scores['Odbojka'] += 3
             sport_scores['Nogomet'] += 3
     
