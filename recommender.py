@@ -26,7 +26,8 @@ class ActivitiesEnjoyed(Enum):
    MARTIAL_ARTS = 5  # Borilačke vještine
    SWIMMING_AND_WATER = 6  # Plivanje i vodene aktivnosti
    DANCE_AND_RHYTHM = 7  # Ples i ritmično kretanje
-   OTHER = 8  # Drugo
+   BALL = 8  # Igranje lopte
+   OTHER = 9  # Drugo
    
 class AgeGroup(Enum):
    PRESCHOOL = 1  # (4-7 godina)
@@ -683,6 +684,11 @@ class RuleBasedRecommender:
                pass
          elif activity == ActivitiesEnjoyed.DANCE_AND_RHYTHM:
                pass
+         elif activity == ActivitiesEnjoyed.BALL:
+            sport_scores['Hokej na travi'] += 2
+            sport_scores['Ragbi'] += 2
+            sport_scores['Odbojka'] += 3
+            sport_scores['Nogomet'] += 3
     
       if age_group == AgeGroup.PRESCHOOL:
          sport_scores['Hokej na travi'] -= 1  
