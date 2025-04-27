@@ -22,6 +22,8 @@ class ClickTracker:
    def _save_db(self):
       with open(self.user_db_path, 'w', encoding='utf-8') as f:
          json.dump(self.user_db, f, indent=4, ensure_ascii=False)
+      if self.recommender:
+         self.recommender._load_database()
    
    def initialize_user(self, user_id, user_data =  None):
       """Initialize a new user with profile data"""

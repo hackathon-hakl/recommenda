@@ -183,6 +183,7 @@ class Recommender:
       user = self.get_user_profile(user_id)
       self.users.update({"user_id": user_id, **user_data})     
       self._build_user_similarity_matrix()
+      self._load_database()
    
    def get_user_profile(self, user_id):
       print(self.users)
@@ -191,6 +192,7 @@ class Recommender:
       return None
    
    def get_homepage_recommendations(self, user_id, limit=10):
+      self._load_database()
       self._build_user_similarity_matrix()
       print(user_id)
       user = self.get_user_profile(user_id)
@@ -206,6 +208,7 @@ class Recommender:
       return recommendations
    
    def get_sport_recommendations(self, user_id, sport_name, limit=5):
+      self._load_database()
       user = self.get_user_profile(user_id)
       
       similar_users = self._get_similar_users(user_id)
@@ -226,6 +229,7 @@ class Recommender:
    
    def get_event_recommendations(self, user_id, limit=5):
       """Get recommendations for the events page"""
+      self._load_database()
       user = self.get_user_profile(user_id)
       if not user:
          return []
@@ -240,6 +244,7 @@ class Recommender:
    
    def get_tournament_recommendations(self, user_id, limit=5):
       """Get tournament recommendations"""
+      self._load_database()
       user = self.get_user_profile(user_id)
       if not user:
          return []
@@ -473,6 +478,7 @@ class Recommender:
    
    def _get_upcoming_events(self, user, similar_users, limit=5):
       """Get upcoming events based on user preferences and similar users"""
+      self._load_database()
       all_events = []
       print(f"user : {user}")
       if 'events_liked' in user:
@@ -537,6 +543,7 @@ class Recommender:
       return all_events[:limit]
 
    def get_real_time_match_recommendations(self, user_id, limit=5):
+      self._load_database()
       self._build_user_similarity_matrix()
       user = self.get_user_profile(user_id)
       if not user:
@@ -686,7 +693,7 @@ class RuleBasedRecommender:
                pass
          elif activity == ActivitiesEnjoyed.BALL:
             sport_scores['Hokej na travi'] += 1
-            sport_scores['Ragbi'] += 1
+            sport_scores['Ragbi'] += 2
             sport_scores['Odbojka'] += 3
             sport_scores['Nogomet'] += 3
     
