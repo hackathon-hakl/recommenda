@@ -184,7 +184,7 @@ async def get_homepage_recommendations(user_id: str, limit: int = 10):
       user = click_tracker.get_user(user_id)
       if not user:
          user = click_tracker.initialize_user(user_id)
-      
+      recommender._load_database()
       recommendations = recommender.get_homepage_recommendations(user_id, limit)
       return {"user_id": user_id, "recommendations": recommendations}
    except Exception as e:
