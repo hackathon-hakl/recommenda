@@ -12,7 +12,7 @@ sports_ids = get_all_sport_ids(api, base_id)
 locations_ids = get_all_location_ids(api, base_id)
 
 recommender = Recommender(database_path, sports_ids, locations_ids)
-click_tracker = ClickTracker(database_path)
+click_tracker = ClickTracker(database_path, recommender)
 
 app = FastAPI(title="AlterSport API")
 
@@ -70,7 +70,7 @@ async def initialize_user(user_id):
    
 
 @app.post("/api/users/update/{user_id}")
-async def update_user(user_id: str, user_data: UserQuizInit):
+async def update_user(user_id: str, user_data: UserQuizInit = None):
    data_dict = user_data.dict()
    data_dict["user_id"] = user_id
    try:

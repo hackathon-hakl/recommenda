@@ -2,9 +2,10 @@ import json
 import os
 from datetime import datetime
 from API import api, base_id, list_sport_records, list_teams_records, list_events_records, list_tournaments_records, list_category_records, list_locations_records
+from recommender import Recommender
 
 class ClickTracker:
-   def __init__(self, database_path='user_clicks.json'):
+   def __init__(self, database_path='user_clicks.json', recommender=None):
       self.user_db_path = database_path
       self._load_or_create_db()
       
@@ -59,7 +60,8 @@ class ClickTracker:
                users[user_id]["sports_liked_count"][sport_id] = 1
                
       self._save_db()
-      
+      if self.recommender:
+         self.recommender._load_database()
       return users[user_id]
    
    def update_user(self, user_id, user_data):
@@ -80,8 +82,8 @@ class ClickTracker:
             users[user_id]["event_type_priority"] = user_data["event_type_priority"]
          if 'sport_type_preference' in user_data:
             users[user_id]["sport_type_preference"] = user_data["sport_type_preference"]
-      self._save_db()
-      return users[user_id]
+         self._save_db()
+         return users[user_id]
    
    def get_user(self, user_id):
       users = self.user_db["users"]

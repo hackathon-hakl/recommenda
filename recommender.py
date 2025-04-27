@@ -31,6 +31,7 @@ class Recommendation(Enum):
 
 class Recommender:
    def __init__(self, database_path, sports_ids, location_ids):
+      self.database_path = database_path
       with open(database_path, 'r', encoding='utf-8') as f:
          self.database = json.load(f)
       self.users = self.database.get('users', {})
@@ -39,6 +40,12 @@ class Recommender:
       self.sports_num = len(self.sports_ids)
       self._build_user_similarity_matrix()
    
+   def _load_database(self):
+      with open(self.database_path, 'r', encoding='utf-8') as f:
+         self.database = json.load(f)
+      self.users = self.database.get('users', {})
+      self.user_ids = {user : i for i, user in enumerate(self.users.keys())}
+      
    def _encode_location(self, city, distict):
       location = f"{city.lower()}_{distict.lower()}"
       loc_hash = abs(hash(location)) % 1000 +1
