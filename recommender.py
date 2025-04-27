@@ -28,7 +28,6 @@ class ActivitiesEnjoyed(Enum):
    DANCE_AND_RHYTHM = 7  # Ples i ritmično kretanje
    OTHER = 8  # Drugo
    
-   
 class AgeGroup(Enum):
    PRESCHOOL = 1  # (4-7 godina)
    PRIMARY_SCHOOL = 2  # (7-14 godina)
@@ -526,6 +525,7 @@ class Recommender:
                   "home_team_logo" : home_team_data['fields']['Team Logo'][0]['url'],
                   "away_team_id": away_team,
                   "away_team_logo" : away_team_data['fields']['Team Logo'][0]['url'],
+                  "location_id": fields.get('Location', [''])[0] if fields.get('Location') else '',
                   "from_api": True ,
                   "kategorija" : fields.get('Kategorija', ['']) if fields.get('Kategorija') else None
                }
@@ -631,4 +631,4 @@ class Recommender:
    
 class RuleBasedRecommender:
    def __init__(self):
-      self.group_sort_types = []
+      self.sport_ids_to_names = ...

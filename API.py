@@ -163,19 +163,15 @@ def get_events_by_date_range(api, base_id, start_date, end_date, sport_id=None, 
    else:
       end_date_str = end_date
       
-   date_condition = f"AND(IS_AFTER({{Match Date}}, '{start_date_str}'), IS_BEFORE({{Match Date}}, '{end_date_str}'))"
-    
-   try:
-      records = api.table(base_id, 'Događanje').all(
-         formula=date_condition,
-         sort=["Match Date"]
-      )
-      if not records: 
-         return []
-   except Exception as e:
-      print(f"Error fetching events by date range: {e}")
-      return []
-
+   if start_date_str == end_date_str:
+      date_condition = f"DATETIME_FORMAT({{Match Date}}, 'YYYY-MM-DD') = '{start_date_str[:10]}'"
+   else:
+      start_date_formatted = start_date_str[:10]  
+      end_date_formatted = end_date_str[:10]     
+      
+      date_condition = f"AND(IS_SAME_OR_AFTER(DATETIME_FORMAT({{Match Date}}, 'YYYY-MM-DD'), '{start_date_formatted}'), IS_BEFORE(DATETIME_FORMAT({{Match Date}}, 'YYYY-MM-DD'), '{end_date_formatted}', FALSE))"
+      
+   print(f"Date condition: {date_condition}")
    try:
       records = api.table(base_id, 'Događanje').all(
          formula=date_condition,

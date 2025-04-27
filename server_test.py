@@ -336,6 +336,78 @@ def find_events_by_date_range():
     except Exception as e:
         print(f"Failed to find events in date range: {e}")
 
+def find_events_on_specific_date():
+    """Find events on a specific date and compare with a date range"""
+    print_separator("FINDING EVENTS ON SPECIFIC DATE VS DATE RANGE")
+    
+    print("Finding events on a specific date (5/10/2025)...")
+    specific_date_request = {
+        "start_date": "2025-05-10",
+        "end_date": "2025-05-10",
+        "limit": 10
+    }
+    
+    try:
+        response = requests.post(f"{BASE_URL}/events/date-range", json=specific_date_request, headers=HEADERS)
+        response.raise_for_status()
+        events = response.json()["events"]
+        print(f"Found {len(events)} events on 5/10/2025")
+        
+        # Show sample of events if available
+        if events:
+            print("\nSample events in date range:")
+            for event in events[:3]:
+                fields = event.get('fields', {})
+                sport = fields.get('Sport', ['Unknown Sport'])[0] if isinstance(fields.get('Sport'), list) else fields.get('Sport', 'Unknown Sport')
+                date = fields.get('Match Date', 'No date')
+                
+                # Handle potentially missing team data
+                try:
+                    home_team = fields.get('Home Team', [''])[0] if fields.get('Home Team') else 'Unknown'
+                    away_team = fields.get('Away Team', [''])[0] if fields.get('Away Team') else 'Unknown'
+                    print(f"  • {date}: {home_team} vs {away_team} ({sport})")
+                except (IndexError, TypeError):
+                    print(f"  • {date}: Teams not available ({sport})")
+            debug_log("Date range event details example:", events[0] if events else None)
+    except requests.exceptions.HTTPError as e:
+        print(f"Failed to find events in date range: {response.status_code}")
+        debug_log(f"Error response: {response.text}")
+    except Exception as e:
+        print(f"Failed to find events in date range: {e}")
+    
+    # Test 2: Find events in a date range (5/10/2025 - 5/17/2025)
+    print("\nFinding events in a date range (5/10/2025 - 5/17/2025)...")
+    date_range_request = {
+        "start_date": "2025-05-9",
+        "end_date": "2025-05-11",
+        "limit": 10
+    }
+    
+    try:
+        response = requests.post(f"{BASE_URL}/events/date-range", json=date_range_request, headers=HEADERS)
+        response.raise_for_status()
+        events = response.json()["events"]
+        print(f"Found {len(events)} events between 5/9/2025 and 5/11/2025")
+        print(events)
+        
+        # Show sample of events if available
+        if events:
+            print("\nSample events in date range:")
+            for event in events[:3]:
+                fields = event.get('fields', {})
+                sport = fields.get('Sport', ['Unknown Sport'])[0] if isinstance(fields.get('Sport'), list) else fields.get('Sport', 'Unknown Sport')
+                date = fields.get('Match Date', 'No date')
+                
+                # Handle potentially missing team data
+                try:
+                    home_team = fields.get('Home Team', [''])[0] if fields.get('Home Team') else 'Unknown'
+                    away_team = fields.get('Away Team', [''])[0] if fields.get('Away Team') else 'Unknown'
+                    print(f"  • {date}: {home_team} vs {away_team} ({sport})")
+                except (IndexError, TypeError):
+                    print(f"  • {date}: Teams not available ({sport})")
+    except Exception as e:
+        print(f"Failed to find events in date range: {e}")
+        
 def main():
     """Main function to execute the test script"""
     print("Starting Sport Recommendation API Test Script...")
@@ -367,9 +439,11 @@ def main():
     if not user_id:
         return
     
-    simulate_user_activity(user_id)
+    # simulate_user_activity(user_id)
     
     get_recommendations(user_id)
+    
+    # find_events_on_specific_date()
     
     print("\nTest script completed successfully!")
 

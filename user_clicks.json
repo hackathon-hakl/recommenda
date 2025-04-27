@@ -3933,6 +3933,92 @@
                 "recRB6Md7YUujJbLt": 1,
                 "reccOQw7IkaJ2IBaM": 1
             }
+        },
+        "Nina Babić": {
+            "user_id": "Nina Babić",
+            "age": "DEFAULT",
+            "city": null,
+            "district": null,
+            "user_name": null,
+            "sport_interests": [
+                "recGfphnFce1DEBhE",
+                "rechBDkyGTVt63HkC"
+            ],
+            "sports_liked_count": {
+                "recGfphnFce1DEBhE": 6,
+                "rechBDkyGTVt63HkC": 1
+            },
+            "teams_liked": [
+                "recbBO2dEP83DqOuF",
+                "rectroVDYgGjC9egD",
+                "recalqrXxiVekHKtJ"
+            ],
+            "team_liked_sport": {
+                "recGfphnFce1DEBhE": 5,
+                "rechBDkyGTVt63HkC": 2
+            },
+            "team_liked_location": {},
+            "player_liked_sports_count": {},
+            "events_liked": [
+                {
+                    "event_id": "recf6hwVelaSLZCiS",
+                    "event_type": "MATCH",
+                    "event_time": "1",
+                    "event_date": "2",
+                    "sport_id": "rechBDkyGTVt63HkC",
+                    "sport_name": "Nogomet",
+                    "home_team_id": "rectroVDYgGjC9egD",
+                    "away_team_id": "recalqrXxiVekHKtJ",
+                    "home_team": "NK Prigorje (M)",
+                    "away_team": "NK Brezovica",
+                    "category_id": "recU705R5UFCDLilc",
+                    "location_id": "recqX7wnvCNCgFQOu",
+                    "timestamp": "2025-04-27T03:12:40.672674"
+                }
+            ],
+            "training_liked_teams": [],
+            "training_sports_liked": {},
+            "training_location": [],
+            "event_type_priority": [
+                "match",
+                "tournament"
+            ],
+            "events_clicked": {
+                "recf6hwVelaSLZCiS": 1
+            },
+            "sports_clicked": {
+                "recGfphnFce1DEBhE": 1,
+                "rechBDkyGTVt63HkC": 1
+            },
+            "teams_clicked": {
+                "recbBO2dEP83DqOuF": 5,
+                "rectroVDYgGjC9egD": 1,
+                "recalqrXxiVekHKtJ": 1
+            }
+        },
+        "Ivan Jurić": {
+            "user_id": "Ivan Jurić",
+            "age": "DEFAULT",
+            "city": null,
+            "district": null,
+            "user_name": null,
+            "sport_interests": [],
+            "sports_liked_count": {},
+            "teams_liked": [],
+            "team_liked_sport": {},
+            "team_liked_location": {},
+            "player_liked_sports_count": {},
+            "events_liked": [],
+            "training_liked_teams": [],
+            "training_sports_liked": {},
+            "training_location": [],
+            "event_type_priority": [
+                "match",
+                "tournament"
+            ],
+            "events_clicked": {},
+            "sports_clicked": {},
+            "teams_clicked": {}
         }
     }
 }
