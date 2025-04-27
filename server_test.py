@@ -435,15 +435,15 @@ def main():
         print(f"Make sure the server is running at {BASE_URL}")
         return
     
-    user_id = create_user()
-    if not user_id:
-        return
+    # user_id = create_user()
+    # if not user_id:
+    #     return
     
     # simulate_user_activity(user_id)
     
-    get_recommendations(user_id)
+    # get_recommendations(user_id)
     
-    # find_events_on_specific_date()
+    find_events_on_specific_date()
     
     print("\nTest script completed successfully!")
 
