@@ -72,7 +72,7 @@ class ClickTracker:
          if "user_name" in user_data:
             users[user_id]["user_name"] = user_data["user_name"]
          if "age" in user_data:
-            users[user_id]["age"] = int(user_data["age"])
+            users[user_id]["age"] = user_data["age"]
          if "city" in user_data:
             users[user_id]["city"] = user_data["city"].lower()
          if "district" in user_data:
@@ -320,7 +320,7 @@ class ClickTracker:
       user = self.get_user(user_id)
 
       if "age" in user_data:
-         user["age"] = int(user_data["age"])
+         user["age"] = user_data["age"]
       if "sport_interests" in user_data:
          user["sport_interests"] = user_data["sport_interests"]  
       if "city" in user_data:

@@ -629,6 +629,74 @@ class Recommender:
       
       return formatted_matches
    
+
+from typing import List
 class RuleBasedRecommender:
    def __init__(self):
-      self.sport_ids_to_names = ...
+      self.sport_name_to_id = {
+         'Hokej na travi' : 'recGfphnFce1DEBhE',
+         'Ragbi' : 'recUmMssS0H4uzmgT',
+         'Šah' : 'recj8YX9QFNCQitNX',
+         'Nogomet' : 'rechBDkyGTVt63HkC',
+         'Odbojka' : 'rec4Q3FEtoheO51gX'
+      } 
+      
+   def get_user_recommendations(self, group_style: GroupSportType, activities: List[ActivitiesEnjoyed], age_group: AgeGroup):
+      sport_scores = {
+         'Hokej na travi': 0,
+         'Ragbi': 0,
+         'Šah': 0,
+         'Nogomet': 0,
+         'Odbojka': 0
+      }
+      
+      if group_style == GroupSportType.TEAM:
+        sport_scores['Hokej na travi'] += 2
+        sport_scores['Ragbi'] += 2
+        sport_scores['Nogomet'] += 2
+        sport_scores['Odbojka'] += 2
+        sport_scores['Šah'] -= 1  
+      elif group_style == GroupSportType.INDIVIDUAL:
+         sport_scores['Šah'] += 3 
+    
+      for activity in activities:
+         if activity == ActivitiesEnjoyed.RUNNING:
+               sport_scores['Hokej na travi'] += 2
+               sport_scores['Nogomet'] += 2
+               sport_scores['Ragbi'] += 1
+         elif activity == ActivitiesEnjoyed.STRENGTH_AND_ENDURANCE:
+               sport_scores['Ragbi'] += 3
+               sport_scores['Nogomet'] += 1
+               sport_scores['Hokej na travi'] += 1
+         elif activity == ActivitiesEnjoyed.STRATEGIC_PLANNING:
+               sport_scores['Šah'] += 3
+               sport_scores['Hokej na travi'] += 1
+               sport_scores['Nogomet'] += 1
+               sport_scores['Odbojka'] += 1
+         elif activity == ActivitiesEnjoyed.BALANCE_AND_AGILITY:
+               sport_scores['Nogomet'] += 2
+               sport_scores['Odbojka'] += 2
+               sport_scores['Hokej na travi'] += 1
+         elif activity == ActivitiesEnjoyed.MARTIAL_ARTS:
+               sport_scores['Odbojka'] += 1  
+         elif activity == ActivitiesEnjoyed.SWIMMING_AND_WATER:
+               pass
+         elif activity == ActivitiesEnjoyed.DANCE_AND_RHYTHM:
+               pass
+    
+      if age_group == AgeGroup.PRESCHOOL:
+         sport_scores['Hokej na travi'] -= 1  
+         sport_scores['Ragbi'] -= 2  
+      elif age_group == AgeGroup.VETERANS:
+         sport_scores['Ragbi'] -= 2  
+         sport_scores['Hokej na travi']  -= 1  
+         sport_scores['Šah'] += 3
+      
+      sorted_sports = sorted(sport_scores.items(), key=lambda x: x[1], reverse=True)
+      recommended_sport_name = sorted_sports[0][0]
+      
+      recommended_sport_id = self.sport_name_to_id.get(recommended_sport_name)
+      if not recommended_sport_id:
+         return [self.sport_name_to_id['Hokej na travi']]
+      
+      return recommended_sport_id

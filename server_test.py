@@ -8,7 +8,7 @@ import sys
 # Configuration
 BASE_URL = "http://127.0.0.1:8888/api"  # Change if your server runs on a different port
 HEADERS = {"Content-Type": "application/json"}
-DEBUG = True  # Set to True to see detailed error information
+DEBUG = False  # Set to True to see detailed error information
 
 def print_separator(title):
     """Print a separator line with title for better readability"""
@@ -40,7 +40,6 @@ def create_user():
                 "recGfphnFce1DEBhE", "recGfphnFce1DEBhE"]
     
     _user_id = f"{random.choice(first_names)} {random.choice(last_names)}"
-    # Create a random user
     user_data = {
         "user_id" : _user_id,
         "user_name": _user_id,
@@ -408,6 +407,113 @@ def find_events_on_specific_date():
     except Exception as e:
         print(f"Failed to find events in date range: {e}")
         
+def test_user_update_after_wizard():
+    """Test the update_after_wizard API endpoint with proper enum mapping"""
+    print_separator("TESTING USER UPDATE AFTER WIZARD (FIXED VERSION)")
+    
+    # First create a basic user to work with
+    user_id = create_user()
+    if not user_id:
+        print("Failed to create test user, skipping wizard update tests")
+        return
+    
+    print("Testing update_after_wizard with different user profiles...")
+    
+    # Test Case 1: Group sport preference with tennis interests
+    print("\nTest Case 1: Group sport preference with tennis interests")
+    test_data_1 = {
+        "user_name": f"{user_id}_updated",
+        "age": "ADULTS",
+        "group_style": "TEAM",  # This matches the actual enum
+        "activities": ["RUNNING", "STRENGTH_AND_ENDURANCE"],
+        "city": "zagreb",
+        "district": "trnje",
+        "sport_interests": ["recGfphnFce1DEBhE"],  # Tennis sport ID
+        "event_type_priority": ["match", "tournament"]
+    }
+    
+    try:
+        response = requests.post(f"{BASE_URL}/users/update/{user_id}", json=test_data_1, headers=HEADERS)
+        debug_log("Request payload (Test Case 1):", test_data_1)
+        response.raise_for_status()
+        result = response.json()
+        print(f"✓ Update successful")
+        print(f"  • Recommended sport: {result.get('recommended_sport', 'None')}")
+        print(f"  • Updated username: {result.get('user_profile', {}).get('user_name', 'None')}")
+        debug_log("Full update response:", result)
+    except requests.exceptions.HTTPError as e:
+        print(f"✗ Update failed with HTTP error: {e}")
+        debug_log("Response body:", response.text)
+    except Exception as e:
+        print(f"✗ Unexpected error during update: {e}")
+    
+    # Test Case 2: Individual sport preference for seniors
+    print("\nTest Case 2: Individual sport preference for seniors (with age mapping)")
+    # SENIORS isn't a valid enum, it should be VETERANS
+    test_data_2 = {
+        "user_name": f"{user_id}_senior",
+        "age": "VETERANS",  # Changed from SENIORS to match actual enum
+        "group_style": "INDIVIDUAL",
+        "activities": ["SWIMMING_AND_WATER", "STRATEGIC_PLANNING"],
+        "city": "split"
+    }
+    
+    try:
+        response = requests.post(f"{BASE_URL}/users/update/{user_id}", json=test_data_2, headers=HEADERS)
+        debug_log("Request payload (Test Case 2):", test_data_2)
+        response.raise_for_status()
+        result = response.json()
+        print(f"✓ Update successful")
+        print(f"  • Recommended sport: {result.get('recommended_sport', 'None')}")
+        print(f"  • City: {result.get('user_profile', {}).get('city', 'None')}")
+        debug_log("Full update response:", result)
+    except requests.exceptions.HTTPError as e:
+        print(f"✗ Update failed with HTTP error: {e}")
+        debug_log("Response body:", response.text)
+    except Exception as e:
+        print(f"✗ Unexpected error during update: {e}")
+    
+    # Test Case 3: Youth activities with minimal data
+    print("\nTest Case 3: Youth activities with minimal data (with age mapping)")
+    # YOUTH isn't a valid enum, it should be JUNIORS
+    test_data_3 = {
+        "user_name": f"{user_id}_youth",
+        "age": "JUNIORS",  # Changed from YOUTH to match actual enum
+        "group_style": "TEAM",
+        "activities": ["OTHER"],
+        "city": "osijek"
+    }
+    
+    try:
+        response = requests.post(f"{BASE_URL}/users/update/{user_id}", json=test_data_3, headers=HEADERS)
+        debug_log("Request payload (Test Case 3):", test_data_3)
+        response.raise_for_status()
+        result = response.json()
+        print(f"✓ Update successful")
+        print(f"  • Recommended sport: {result.get('recommended_sport', 'None')}")
+        print(f"  • Age group: {result.get('user_profile', {}).get('age', 'None')}")
+        debug_log("Full update response:", result)
+    except requests.exceptions.HTTPError as e:
+        print(f"✗ Update failed with HTTP error: {e}")
+        debug_log("Response body:", response.text)
+    except Exception as e:
+        print(f"✗ Unexpected error during update: {e}")
+    
+    # Get the user profile after all updates to verify changes were saved
+    print("\nRetrieving final user profile after wizard updates:")
+    try:
+        response = requests.get(f"{BASE_URL}/users/{user_id}", headers=HEADERS)
+        response.raise_for_status()
+        user_profile = response.json()["profile"]
+        print(f"Final user profile:")
+        print(f"  • Username: {user_profile.get('user_name', 'None')}")
+        print(f"  • Age: {user_profile.get('age', 'None')}")
+        print(f"  • Sport interests: {user_profile.get('sport_interests', 'None')}")
+        print(f"  • City: {user_profile.get('city', 'None')}")
+        debug_log("Complete final profile:", user_profile)
+    except Exception as e:
+        print(f"Failed to get final user profile: {e}")
+        
 def main():
     """Main function to execute the test script"""
     print("Starting Sport Recommendation API Test Script...")
@@ -443,7 +549,10 @@ def main():
     
     # get_recommendations(user_id)
     
-    find_events_on_specific_date()
+    
+    # find_events_on_specific_date()
+    
+    test_user_update_after_wizard()
     
     print("\nTest script completed successfully!")
 

@@ -1,5 +1,5 @@
 from API import *
-from recommender import Recommender
+from recommender import Recommender, RuleBasedRecommender
 from click_tracker import ClickTracker
 from fastapi import FastAPI, HTTPException
 from typing import List, Dict, Optional, Any
@@ -13,6 +13,7 @@ locations_ids = get_all_location_ids(api, base_id)
 
 recommender = Recommender(database_path, sports_ids, locations_ids)
 click_tracker = ClickTracker(database_path, recommender)
+ruleBasedRecommender = RuleBasedRecommender()
 
 app = FastAPI(title="AlterSport API")
 
@@ -28,13 +29,14 @@ class UserQuizInit(BaseModel):
    user_id: Optional[str] = None
    user_name: Optional[str] = None
    age: Optional[str] = None 
+   group_style: Optional[str] = None
+   activities: Optional[List[str]] = None
    city: Optional[str] = None
    district: Optional[str] = None
    sport_type_preference: Optional[str] = None
    sport_interests: Optional[List[str]] = None
    event_type_priority: Optional[List[str]] = None
-   personal_usage: Optional[str] = None
-
+   
 class UserUpdate(BaseModel):
    user_name: Optional[str] = None
    age: Optional[str] = None
@@ -70,13 +72,56 @@ async def initialize_user(user_id):
       raise HTTPException(status_code=500, detail=str(e)) 
    
 
+
+
+class UserQuizInit(BaseModel):
+   user_id: Optional[str] = None
+   user_name: Optional[str] = None
+   age: Optional[str] = None 
+   group_style: Optional[str] = None
+   activities: Optional[List[str]] = None
+   city: Optional[str] = None
+   district: Optional[str] = None
+   sport_type_preference: Optional[str] = None
+   sport_interests: Optional[List[str]] = None
+   event_type_priority: Optional[List[str]] = None
+   
+from recommender import GroupSportType, AgeGroup, ActivitiesEnjoyed
+
 @app.post("/api/users/update/{user_id}")
-async def update_user(user_id: str, user_data: UserQuizInit = None):
+async def update_after_wizard(user_id: str, user_data: UserQuizInit = None):
+   group_style_enum = GroupSportType[user_data.group_style.upper()] if user_data.group_style else GroupSportType.DEFAULT
+   print(f"Group style enum: {group_style_enum}")
+   age_group_enum = AgeGroup[user_data.age.upper()] if user_data.age else AgeGroup.ADULTS
+   print(f"Age group enum: {age_group_enum}")
+   activity_enums = []
+   for activity in user_data.activities:
+      activity_enums.append(ActivitiesEnjoyed[activity.upper()])
+   print(f"Activity enums: {activity_enums}")
+   recommended_sport = ruleBasedRecommender.get_user_recommendations(
+      group_style=group_style_enum,
+      activities=activity_enums,
+      age_group=age_group_enum
+   )
+   print(f"Recommended sport: {recommended_sport}")
+   
    data_dict = user_data.dict()
+   if recommended_sport:
+      if not data_dict.get('sport_interests'):
+            data_dict['sport_interests'] = [recommended_sport]
+      elif recommended_sport not in data_dict['sport_interests']:
+            data_dict['sport_interests'].append(recommended_sport)
+               
    data_dict["user_id"] = user_id
+   print(f"Data dict: {data_dict}")
+
    try:
       user = click_tracker.update_user(user_id, data_dict)
-      return {"user_id": user_id, "profile": user}
+      return {
+            "user_id": user_id, 
+            "recommended_sport": recommended_sport, 
+            "user_profile": user
+        }
    except Exception as e:
       raise HTTPException(status_code=500, detail=str(e))
    

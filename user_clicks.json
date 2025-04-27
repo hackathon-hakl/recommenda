@@ -3733,7 +3733,7 @@
             "age": "DEFAULT",
             "city": null,
             "district": null,
-            "user_name": null,
+            "user_name": "Ante Horvat_youth",
             "sport_interests": [
                 "recGfphnFce1DEBhE",
                 "rechBDkyGTVt63HkC"
@@ -3792,13 +3792,13 @@
         },
         "Nina Kovačić": {
             "user_id": "Nina Kovačić",
-            "age": "DEFAULT",
-            "city": null,
-            "district": null,
-            "user_name": null,
+            "age": "ADULTS",
+            "city": "zagreb",
+            "district": "trnje",
+            "user_name": "Nina Kovačić_updated",
             "sport_interests": [
                 "recGfphnFce1DEBhE",
-                "rechBDkyGTVt63HkC"
+                "recUmMssS0H4uzmgT"
             ],
             "sports_liked_count": {
                 "recGfphnFce1DEBhE": 7,
@@ -3850,7 +3850,8 @@
                 "recbBO2dEP83DqOuF": 5,
                 "recsTR00MHM9euxqF": 1,
                 "recdkKwZTFG1vYQAi": 1
-            }
+            },
+            "sport_type_preference": null
         },
         "Ivan Marić": {
             "user_id": "Ivan Marić",
@@ -4019,6 +4020,158 @@
             "events_clicked": {},
             "sports_clicked": {},
             "teams_clicked": {}
+        },
+        "Nina Horvat": {
+            "user_id": "Nina Horvat",
+            "age": "DEFAULT",
+            "city": null,
+            "district": null,
+            "user_name": null,
+            "sport_interests": [],
+            "sports_liked_count": {},
+            "teams_liked": [],
+            "team_liked_sport": {},
+            "team_liked_location": {},
+            "player_liked_sports_count": {},
+            "events_liked": [],
+            "training_liked_teams": [],
+            "training_sports_liked": {},
+            "training_location": [],
+            "event_type_priority": [
+                "match",
+                "tournament"
+            ],
+            "events_clicked": {},
+            "sports_clicked": {},
+            "teams_clicked": {}
+        },
+        "Marija Novak": {
+            "user_id": "Marija Novak",
+            "age": "DEFAULT",
+            "city": null,
+            "district": null,
+            "user_name": null,
+            "sport_interests": [],
+            "sports_liked_count": {},
+            "teams_liked": [],
+            "team_liked_sport": {},
+            "team_liked_location": {},
+            "player_liked_sports_count": {},
+            "events_liked": [],
+            "training_liked_teams": [],
+            "training_sports_liked": {},
+            "training_location": [],
+            "event_type_priority": [
+                "match",
+                "tournament"
+            ],
+            "events_clicked": {},
+            "sports_clicked": {},
+            "teams_clicked": {}
+        },
+        "Nina Vuković": {
+            "user_id": "Nina Vuković",
+            "age": "DEFAULT",
+            "city": null,
+            "district": null,
+            "user_name": null,
+            "sport_interests": [],
+            "sports_liked_count": {},
+            "teams_liked": [],
+            "team_liked_sport": {},
+            "team_liked_location": {},
+            "player_liked_sports_count": {},
+            "events_liked": [],
+            "training_liked_teams": [],
+            "training_sports_liked": {},
+            "training_location": [],
+            "event_type_priority": [
+                "match",
+                "tournament"
+            ],
+            "events_clicked": {},
+            "sports_clicked": {},
+            "teams_clicked": {}
+        },
+        "Ana Horvat": {
+            "user_id": "Ana Horvat",
+            "age": "DEFAULT",
+            "city": null,
+            "district": null,
+            "user_name": null,
+            "sport_interests": [],
+            "sports_liked_count": {},
+            "teams_liked": [],
+            "team_liked_sport": {},
+            "team_liked_location": {},
+            "player_liked_sports_count": {},
+            "events_liked": [],
+            "training_liked_teams": [],
+            "training_sports_liked": {},
+            "training_location": [],
+            "event_type_priority": [
+                "match",
+                "tournament"
+            ],
+            "events_clicked": {},
+            "sports_clicked": {},
+            "teams_clicked": {}
+        },
+        "Tomislav Vuković": {
+            "user_id": "Tomislav Vuković",
+            "age": "ADULTS",
+            "city": "zagreb",
+            "district": "trnje",
+            "user_name": "Tomislav Vuković_updated",
+            "sport_interests": [
+                "recGfphnFce1DEBhE",
+                "Ragbi"
+            ],
+            "sports_liked_count": {},
+            "teams_liked": [],
+            "team_liked_sport": {},
+            "team_liked_location": {},
+            "player_liked_sports_count": {},
+            "events_liked": [],
+            "training_liked_teams": [],
+            "training_sports_liked": {},
+            "training_location": [],
+            "event_type_priority": [
+                "match",
+                "tournament"
+            ],
+            "events_clicked": {},
+            "sports_clicked": {},
+            "teams_clicked": {},
+            "sport_type_preference": null
+        },
+        "Nina Jurić": {
+            "user_id": "Nina Jurić",
+            "age": "ADULTS",
+            "city": "zagreb",
+            "district": "trnje",
+            "user_name": "Nina Jurić_updated",
+            "sport_interests": [
+                "recGfphnFce1DEBhE",
+                "Ragbi"
+            ],
+            "sports_liked_count": {},
+            "teams_liked": [],
+            "team_liked_sport": {},
+            "team_liked_location": {},
+            "player_liked_sports_count": {},
+            "events_liked": [],
+            "training_liked_teams": [],
+            "training_sports_liked": {},
+            "training_location": [],
+            "event_type_priority": [
+                "match",
+                "tournament"
+            ],
+            "events_clicked": {},
+            "sports_clicked": {},
+            "teams_clicked": {},
+            "sport_type_preference": null
         }
     }
 }
