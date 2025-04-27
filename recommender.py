@@ -505,7 +505,7 @@ class Recommender:
                   base_id,
                   sport_id=favorite_sports if favorite_sports else None,
                   team_id=favorite_teams if favorite_teams else None,
-                  days_ahead=1000
+                  days_ahead=20
             )
             
             for match in api_matches:
@@ -539,47 +539,7 @@ class Recommender:
                }
                all_events.append(event)
       except:
-         try:
-            self._load_database()
-            all_events = []
-            api_matches = get_similar_upcoming_matches(
-                     api, 
-                     base_id,
-                     days_ahead=1000
-               )
-               
-            for match in api_matches:
-               fields = match.get('fields', {})
-               
-               print(f"fields : {fields}")
-               
-               home_team = fields.get('Home Team', [''])[0] if fields.get('Home Team') else None
-               away_team = fields.get('Away Team', [''])[0] if fields.get('Away Team') else None
-               
-               home_team_data  = list_teams_records(
-                  api, base_id, team_id=home_team
-               )
-               
-               away_team_data  = list_teams_records(
-                  api, base_id, team_id=away_team
-               )
-               
-               event = {
-                  "event_id": match.get('id', ''),
-                  "event_type": "MATCH",
-                  "event_date": fields.get('Match Date', ''),
-                  "sport_id": fields.get('Sport', [''])[0] if fields.get('Sport') else None,
-                  "home_team_id": home_team,
-                  "home_team_logo" : home_team_data['fields']['Team Logo'][0]['url'],
-                  "away_team_id": away_team,
-                  "away_team_logo" : away_team_data['fields']['Team Logo'][0]['url'],
-                  "location_id": fields.get('Location', [''])[0] if fields.get('Location') else '',
-                  "from_api": True ,
-                  "kategorija" : fields.get('Kategorija', ['']) if fields.get('Kategorija') else None
-               }
-               all_events.append(event)
-         except Exception as e:
-            return []
+         return []
       
       return all_events[:limit]
 
@@ -604,7 +564,7 @@ class Recommender:
          base_id,
          sport_id=favorite_sports if favorite_sports else None,
          team_id=favorite_teams if favorite_teams else None,
-         days_ahead=100
+         days_ahead=20 
       )
       
       if not matches and favorite_sports:
@@ -612,14 +572,14 @@ class Recommender:
             api,
             base_id,
             sport_id=favorite_sports,
-            days_ahead=100
+            days_ahead=7
          )
       
       if not matches:
          matches = get_similar_upcoming_matches(
             api,
             base_id,
-            days_ahead=100
+            days_ahead=5
          )
       
       formatted_matches = []
