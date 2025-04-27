@@ -3703,6 +3703,236 @@
                 "recIXje1p6oc90B6m": 1,
                 "reccOQw7IkaJ2IBaM": 1
             }
+        },
+        "Ante Babić": {
+            "user_id": "Ante Babić",
+            "age": "DEFAULT",
+            "city": null,
+            "district": null,
+            "user_name": null,
+            "sport_interests": [],
+            "sports_liked_count": {},
+            "teams_liked": [],
+            "team_liked_sport": {},
+            "team_liked_location": {},
+            "player_liked_sports_count": {},
+            "events_liked": [],
+            "training_liked_teams": [],
+            "training_sports_liked": {},
+            "training_location": [],
+            "event_type_priority": [
+                "match",
+                "tournament"
+            ],
+            "events_clicked": {},
+            "sports_clicked": {},
+            "teams_clicked": {}
+        },
+        "Ante Horvat": {
+            "user_id": "Ante Horvat",
+            "age": "DEFAULT",
+            "city": null,
+            "district": null,
+            "user_name": null,
+            "sport_interests": [
+                "recGfphnFce1DEBhE",
+                "rechBDkyGTVt63HkC"
+            ],
+            "sports_liked_count": {
+                "recGfphnFce1DEBhE": 5,
+                "rechBDkyGTVt63HkC": 1
+            },
+            "teams_liked": [
+                "recbBO2dEP83DqOuF",
+                "recdVOTeqdah3fuxG",
+                "rec4xx7v9hZiElz1m"
+            ],
+            "team_liked_sport": {
+                "recGfphnFce1DEBhE": 3,
+                "rechBDkyGTVt63HkC": 2
+            },
+            "team_liked_location": {},
+            "player_liked_sports_count": {},
+            "events_liked": [
+                {
+                    "event_id": "recnolGKSjm0k9Hoe",
+                    "event_type": "MATCH",
+                    "event_time": "1",
+                    "event_date": "2",
+                    "sport_id": "rechBDkyGTVt63HkC",
+                    "sport_name": "Nogomet",
+                    "home_team_id": "recdVOTeqdah3fuxG",
+                    "away_team_id": "rec4xx7v9hZiElz1m",
+                    "home_team": "NK Sava",
+                    "away_team": "NK Zet",
+                    "category_id": "recU705R5UFCDLilc",
+                    "location_id": "recBpwxY6QpX7tMjF",
+                    "timestamp": "2025-04-27T02:24:10.989573"
+                }
+            ],
+            "training_liked_teams": [],
+            "training_sports_liked": {},
+            "training_location": [],
+            "event_type_priority": [
+                "match",
+                "tournament"
+            ],
+            "events_clicked": {
+                "recnolGKSjm0k9Hoe": 1
+            },
+            "sports_clicked": {
+                "recGfphnFce1DEBhE": 2,
+                "rechBDkyGTVt63HkC": 1
+            },
+            "teams_clicked": {
+                "recbBO2dEP83DqOuF": 3,
+                "recdVOTeqdah3fuxG": 1,
+                "rec4xx7v9hZiElz1m": 1
+            }
+        },
+        "Nina Kovačić": {
+            "user_id": "Nina Kovačić",
+            "age": "DEFAULT",
+            "city": null,
+            "district": null,
+            "user_name": null,
+            "sport_interests": [
+                "recGfphnFce1DEBhE",
+                "rechBDkyGTVt63HkC"
+            ],
+            "sports_liked_count": {
+                "recGfphnFce1DEBhE": 7,
+                "rechBDkyGTVt63HkC": 1
+            },
+            "teams_liked": [
+                "recbBO2dEP83DqOuF",
+                "recsTR00MHM9euxqF",
+                "recdkKwZTFG1vYQAi"
+            ],
+            "team_liked_sport": {
+                "recGfphnFce1DEBhE": 5,
+                "rechBDkyGTVt63HkC": 2
+            },
+            "team_liked_location": {},
+            "player_liked_sports_count": {},
+            "events_liked": [
+                {
+                    "event_id": "recEJfxfDAwQ2P65t",
+                    "event_type": "MATCH",
+                    "event_time": "1",
+                    "event_date": "2",
+                    "sport_id": "rechBDkyGTVt63HkC",
+                    "sport_name": "Nogomet",
+                    "home_team_id": "recsTR00MHM9euxqF",
+                    "away_team_id": "recdkKwZTFG1vYQAi",
+                    "home_team": "NK Zelengaj",
+                    "away_team": "NK Kašina",
+                    "category_id": "recU705R5UFCDLilc",
+                    "location_id": "recdP3sgWgZjZYG1R",
+                    "timestamp": "2025-04-27T02:25:10.217278"
+                }
+            ],
+            "training_liked_teams": [],
+            "training_sports_liked": {},
+            "training_location": [],
+            "event_type_priority": [
+                "match",
+                "tournament"
+            ],
+            "events_clicked": {
+                "recEJfxfDAwQ2P65t": 1
+            },
+            "sports_clicked": {
+                "recGfphnFce1DEBhE": 2,
+                "rechBDkyGTVt63HkC": 1
+            },
+            "teams_clicked": {
+                "recbBO2dEP83DqOuF": 5,
+                "recsTR00MHM9euxqF": 1,
+                "recdkKwZTFG1vYQAi": 1
+            }
+        },
+        "Ivan Marić": {
+            "user_id": "Ivan Marić",
+            "age": "DEFAULT",
+            "city": null,
+            "district": null,
+            "user_name": null,
+            "sport_interests": [
+                "recGfphnFce1DEBhE",
+                "rechBDkyGTVt63HkC"
+            ],
+            "sports_liked_count": {
+                "recGfphnFce1DEBhE": 5,
+                "rechBDkyGTVt63HkC": 2
+            },
+            "teams_liked": [
+                "recbBO2dEP83DqOuF",
+                "recsTR00MHM9euxqF",
+                "recdkKwZTFG1vYQAi",
+                "recRB6Md7YUujJbLt",
+                "reccOQw7IkaJ2IBaM"
+            ],
+            "team_liked_sport": {
+                "recGfphnFce1DEBhE": 3,
+                "rechBDkyGTVt63HkC": 4
+            },
+            "team_liked_location": {},
+            "player_liked_sports_count": {},
+            "events_liked": [
+                {
+                    "event_id": "recEJfxfDAwQ2P65t",
+                    "event_type": "MATCH",
+                    "event_time": "1",
+                    "event_date": "2",
+                    "sport_id": "rechBDkyGTVt63HkC",
+                    "sport_name": "Nogomet",
+                    "home_team_id": "recsTR00MHM9euxqF",
+                    "away_team_id": "recdkKwZTFG1vYQAi",
+                    "home_team": "NK Zelengaj",
+                    "away_team": "NK Kašina",
+                    "category_id": "recU705R5UFCDLilc",
+                    "location_id": "recdP3sgWgZjZYG1R",
+                    "timestamp": "2025-04-27T02:31:27.927130"
+                },
+                {
+                    "event_id": "reciuH6PwcNQMyAtf",
+                    "event_type": "MATCH",
+                    "event_time": "1",
+                    "event_date": "2",
+                    "sport_id": "rechBDkyGTVt63HkC",
+                    "sport_name": "Nogomet",
+                    "home_team_id": "recRB6Md7YUujJbLt",
+                    "away_team_id": "reccOQw7IkaJ2IBaM",
+                    "home_team": "NK Kralj Tomislav",
+                    "away_team": "NK Šparta",
+                    "category_id": "recU705R5UFCDLilc",
+                    "location_id": "recgHhOHYaDgwsPCK",
+                    "timestamp": "2025-04-27T02:31:29.472864"
+                }
+            ],
+            "training_liked_teams": [],
+            "training_sports_liked": {},
+            "training_location": [],
+            "event_type_priority": [
+                "match",
+                "tournament"
+            ],
+            "events_clicked": {
+                "recEJfxfDAwQ2P65t": 1,
+                "reciuH6PwcNQMyAtf": 1
+            },
+            "sports_clicked": {
+                "recGfphnFce1DEBhE": 2,
+                "rechBDkyGTVt63HkC": 2
+            },
+            "teams_clicked": {
+                "recbBO2dEP83DqOuF": 3,
+                "recsTR00MHM9euxqF": 1,
+                "recdkKwZTFG1vYQAi": 1,
+                "recRB6Md7YUujJbLt": 1,
+                "reccOQw7IkaJ2IBaM": 1
+            }
         }
     }
 }

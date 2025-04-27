@@ -57,7 +57,7 @@ def create_user():
     debug_log("User data:", user_data)
     
     try:
-        response = requests.post(f"{BASE_URL}/users/initialize", json=user_data, headers=HEADERS)
+        response = requests.post(f"{BASE_URL}/users/initialize/{_user_id}", json=user_data, headers=HEADERS)
         response.raise_for_status()
         result = response.json()
         user_id = result["user_id"]
@@ -363,24 +363,13 @@ def main():
         print(f"Make sure the server is running at {BASE_URL}")
         return
     
-    # Create a user
     user_id = create_user()
     if not user_id:
         return
     
-    # Simulate user activity (clicks)
     simulate_user_activity(user_id)
     
-    
-    from time import time
-    
-    start_time = time()
-    
-    for i in range(10):
-        get_recommendations('user_1745697147')
-        
-        # Find events by date range
-        find_events_by_date_range()
+    get_recommendations(user_id)
     
     print("\nTest script completed successfully!")
 

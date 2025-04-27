@@ -66,6 +66,7 @@ async def initialize_user(user_id):
       user = click_tracker.initialize_user(user_id)
       return {"user_id": user_id, "profile": user}
    except Exception as e:
+      print(f"Error initializing user: {str(e)}")
       raise HTTPException(status_code=500, detail=str(e)) 
    
 

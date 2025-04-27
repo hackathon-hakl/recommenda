@@ -8,6 +8,7 @@ class ClickTracker:
    def __init__(self, database_path='user_clicks.json', recommender=None):
       self.user_db_path = database_path
       self._load_or_create_db()
+      self.recommender = recommender
       
    def _load_or_create_db(self):
       """Load existing click database or create new one if it doesn't exist"""
@@ -48,7 +49,7 @@ class ClickTracker:
                "teams_clicked": {}           
          }
          
-         if user_data:
+         if user_data is not None:
             users[user_id]["user_name"] = user_data.get("user_name")
             users[user_id]["age"] = user_data.get("age", 25)
             users[user_id]["city"] = user_data.get("city", "").lower() if user_data.get("city") else None

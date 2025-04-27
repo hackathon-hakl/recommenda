@@ -13,6 +13,22 @@ class EventType(Enum):
    TOURNAMENT = 5
    LEAGUE = 6
 
+class GroupSportType(Enum):
+   TEAM = 1
+   INDIVIDUAL = 2
+   DEFAULT = 3
+   
+class ActivitiesEnjoyed(Enum):
+   RUNNING = 1  # Trčanje
+   STRENGTH_AND_ENDURANCE = 2  # Izgradnja snage i izdržljivosti
+   STRATEGIC_PLANNING = 3  # Strateško planiranje poteza
+   BALANCE_AND_AGILITY = 4  # Izgradnja ravnoteže i spretnosti
+   MARTIAL_ARTS = 5  # Borilačke vještine
+   SWIMMING_AND_WATER = 6  # Plivanje i vodene aktivnosti
+   DANCE_AND_RHYTHM = 7  # Ples i ritmično kretanje
+   OTHER = 8  # Drugo
+   
+   
 class AgeGroup(Enum):
    PRESCHOOL = 1  # (4-7 godina)
    PRIMARY_SCHOOL = 2  # (7-14 godina)
@@ -509,7 +525,7 @@ class Recommender:
                   "home_team_id": home_team,
                   "home_team_logo" : home_team_data['fields']['Team Logo'][0]['url'],
                   "away_team_id": away_team,
-                  "away_team_logo" : home_team_data['fields']['Team Logo'][0]['url'],
+                  "away_team_logo" : away_team_data['fields']['Team Logo'][0]['url'],
                   "from_api": True ,
                   "kategorija" : fields.get('Kategorija', ['']) if fields.get('Kategorija') else None
                }
@@ -565,14 +581,20 @@ class Recommender:
          away_team_id = fields.get('Away Team', [''])[0] if fields.get('Away Team') else ''
          home_team_name = "Unknown Team"
          away_team_name = "Unknown Team"
-         
+         home_team_logo = None
+         away_team_logo = None
+
          try:
             if home_team_id:
                   home_team_info = list_teams_records(api, base_id, home_team_id)
                   home_team_name = home_team_info.get('fields', {}).get('Team Name', 'Unknown Team')
+                  if 'Team Logo' in home_team_info.get('fields', {}) and home_team_info['fields']['Team Logo']:
+                     home_team_logo = home_team_info['fields']['Team Logo'][0]['url']
             if away_team_id:
                   away_team_info = list_teams_records(api, base_id, away_team_id)
                   away_team_name = away_team_info.get('fields', {}).get('Team Name', 'Unknown Team')
+                  if 'Team Logo' in away_team_info.get('fields', {}) and away_team_info['fields']['Team Logo']:
+                     away_team_logo = away_team_info['fields']['Team Logo'][0]['url']
          except Exception:
             pass
          
@@ -597,6 +619,8 @@ class Recommender:
             "away_team_id": away_team_id,
             "home_team": home_team_name,
             "away_team": away_team_name,
+            "home_team_logo": home_team_logo,	
+            "away_team_logo": away_team_logo,
             "location_id": fields.get('Location', [''])[0] if fields.get('Location') else '',
             "is_recommended": True
          }
@@ -604,3 +628,7 @@ class Recommender:
          formatted_matches.append(formatted_match)
       
       return formatted_matches
+   
+class RuleBasedRecommender:
+   def __init__(self):
+      self.group_sort_types = []
